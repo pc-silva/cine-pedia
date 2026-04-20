@@ -19,11 +19,9 @@ function Home() {
         },
       });
       setMovies(response.data.results.slice(0, 10));
+      setLoading(false);
     }
     loadMovie();
-    setTimeout(() => {
-      setLoading(false);
-    }, 800);
   }, []);
 
   return (

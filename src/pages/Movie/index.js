@@ -32,13 +32,25 @@ function Movie() {
         <h2>Carregando lista de filmes...</h2>
       ) : (
         <>
-          <h1>{movie.title}</h1>
-          <img
-            src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-          />
-          <h3>Sinopse</h3>
-          <span>{movie.overview}</span>
-          <strong>{movie.vote_average} / 10</strong>
+          <div className="left">
+            <img
+              src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+            />
+          </div>
+          <div className="right">
+            <h1>{movie.title}</h1>
+            <h3>Sinopse</h3>
+            <span>{movie.overview}</span>
+            <strong>
+              <span className="rated">{movie.vote_average}</span> / 10
+            </strong>
+            <div className="area-buttons">
+              <button>Salvar</button>
+              <button>
+                <a href="#">Trailer</a>
+              </button>
+            </div>
+          </div>
         </>
       )}
     </div>
