@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, replace } from "react-router-dom";
 import api from "../../services/api";
 
 import "./movie.css";
@@ -8,6 +8,7 @@ function Movie() {
   const [movie, setMovie] = useState({});
   const [loading, setLoading] = useState();
   const { id } = useParams();
+  const navigation = useNavigate();
 
   useEffect(() => {
     async function loadMovie() {
@@ -20,11 +21,12 @@ function Movie() {
         })
         .then((response) => setMovie(response.data))
         .catch(() => {
-          console.log("Erro ao carregar página");
+          navigation("/", { replace: true });
+          return;
         });
     }
     loadMovie();
-  }, []);
+  }, [navigation, id]);
 
   return (
     <div className="list-info">
@@ -47,7 +49,13 @@ function Movie() {
             <div className="area-buttons">
               <button>Salvar</button>
               <button>
-                <a href="#">Trailer</a>
+                <a
+                  target="_blank"
+                  rel="external"
+                  href={`https://www.youtube.com/results?search_query=${movie.title} trailer`}
+                >
+                  Trailer
+                </a>
               </button>
             </div>
           </div>
