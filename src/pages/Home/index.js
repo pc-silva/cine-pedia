@@ -1,4 +1,52 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+import api from "../../services/api";
+
+import "./home.css";
+
 function Home() {
-  return <h1>Bem vindo a página HOME</h1>;
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadMovie() {
+      const response = await api.get("movie/now_playing", {
+        params: {
+          api_key: "486cf28af09bfe05eae35b3756702a16",
+          language: "pt-BR",
+          page: 1,
+        },
+      });
+      setMovies(response.data.results.slice(0, 10));
+    }
+    loadMovie();
+    setTimeout(() => {
+      setLoading(false);
+    }, 800);
+  }, []);
+
+  return (
+    <div className="container">
+      <div className="list-movies">
+        {loading ? (
+          <h2>Carregando lista de filmes...</h2>
+        ) : (
+          movies.map((movie) => {
+            return (
+              <article key={movie.id}>
+                <strong>{movie.title}</strong>
+                <img
+                  src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                  alt={movie.title}
+                />
+                <Link to={`/movie/${movie.id}`}>Acessar</Link>
+              </article>
+            );
+          })
+        )}
+      </div>
+    </div>
+  );
 }
 export default Home;

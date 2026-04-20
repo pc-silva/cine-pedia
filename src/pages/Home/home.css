@@ -1,0 +1,41 @@
+.list-movies {
+  max-width: 850px;
+  margin-block: 12px;
+
+  article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    strong {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    img {
+      max-width: 38%;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+    }
+
+    a {
+      text-decoration: none;
+      width: 38%;
+      text-align: center;
+      background-color: #3a55f1;
+      color: #fff;
+      font-weight: bold;
+      padding-block: 4px;
+      margin-bottom: 24px;
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      transition: all 0.5s;
+      border: none;
+
+      &:hover {
+        background-color: #1d31a1;
+      }
+    }
+  }
+}
