@@ -6,11 +6,11 @@
   gap: 12px;
 }
 
-img {
+.list-info img {
   width: 100%;
   max-width: 650px;
-  height: 100%;
-  object-fit: contain;
+  max-height: 300px;
+  object-fit: cover;
   border-radius: 6px;
 }
 

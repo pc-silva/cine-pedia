@@ -31,7 +31,8 @@ article strong {
 }
 
 article img {
-  max-width: 100%;
+  max-width: 250px;
+  height: 100%;
   border-top-left-radius: var(--border-radius-sm);
   border-top-right-radius: var(--border-radius-sm);
 }
