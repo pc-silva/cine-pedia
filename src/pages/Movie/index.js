@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate, replace } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import api from "../../services/api";
 
 import "./movie.css";
@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 function Movie() {
   const [movie, setMovie] = useState({});
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const navigation = useNavigate();
 
@@ -25,6 +25,7 @@ function Movie() {
           navigation("/", { replace: true });
           return;
         });
+      setLoading(false);
     }
     loadMovie();
   }, [navigation, id]);
@@ -54,6 +55,7 @@ function Movie() {
           <div className="left">
             <img
               src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+              alt={movie.title}
             />
           </div>
           <div className="right">
@@ -68,7 +70,7 @@ function Movie() {
               <button>
                 <a
                   target="_blank"
-                  rel="external"
+                  rel="noreferrer"
                   href={`https://www.youtube.com/results?search_query=${movie.title} trailer`}
                 >
                   Trailer
